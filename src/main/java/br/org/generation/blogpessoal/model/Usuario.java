@@ -21,7 +21,9 @@ public class Usuario {
 	@Size(min = 2, max = 150, message = "O nome deve conter entre 2 e 150 caracteres.")
 	private String nome;
 	
-	@NotNull
+	@NotNull(message = "O atributo usuário é obrigatório")
+	@NotBlank(message = "O atributo usuário não pode ser vazio")
+	//@Email(message = "O atributo usuário deve ser um email")
 	@Size(min = 2, max = 150, message = "O usuário deve conter entre 2 e 150 caracteres.")
 	private String usuario;
 	
@@ -37,6 +39,15 @@ public class Usuario {
 	@JsonIgnoreProperties("usuario")
 	private List <Postagem> postagem;
 
+	public Usuario(long id, String nome, String usuario, String senha, LocalDate dataNascimento) {
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.dataNascimento = dataNascimento;
+	}
+	
+	public Usuario() {  }	
 	
 	public long getId() {
 		return id;
